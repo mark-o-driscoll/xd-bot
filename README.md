@@ -67,7 +67,7 @@ az account set --subscription  "<subkey>"
     
 az ad app create --available-to-other-tenants --display-name "xdwebappbot" --password "<password>"
 
-exisiting group = "bot-linux"
+existing group = "bot-linux"
 
 To deploy run in deployment folder: az deployment group create --resource-group "bot-linux" --template-file "./template-with-preexisting-rg.json" --parameters appId="<appId>" appSecret="<password>" botId="xdchatbot" newWebAppName="xdchatbot" newAppServicePlanName="xdchatbot" appServicePlanLocation="uksouth" --name "xdchatbot"
     In Azure go to Web App / Deployment/ Create Pipeline with Git Hub
