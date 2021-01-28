@@ -1,6 +1,6 @@
-# RRBOT
+# XD BOT
 
-Make reservations for a restaurant 
+Book an Interview time slot.
 
 This bot has been created using [Bot Framework](https://dev.botframework.com), it shows how to create a simple bot that accepts input from the user and echoes it back.
 
