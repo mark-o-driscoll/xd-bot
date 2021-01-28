@@ -11,17 +11,33 @@
         {
             "type": "Action.Submit",
             "title": "Book Interview Slot",
-            "data": "Book Interview Slot"
+            "data": {
+                "msteams": {
+                    "type": "imBack",
+                    "value": "Book Interview Slot"
+                }
+              }
         },
         {
             "type": "Action.Submit",
             "title": "Find Office Location",
-            "data": "Find Office Location"
+            "data": {
+                "msteams": {
+                    "type": "imBack",
+                    "value": "Find Office Location"
+                }
+              }
         },
         {
             "type": "Action.Submit",
             "title": "Contact HR",
-            "data": "Contact HR"
+            "data": {
+                "msteams": {
+                    "type": "imBack",
+                    "value": "Contact HR"
+                }
+              }
+            
         }
     ],
     "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",

@@ -66,16 +66,22 @@ class XDBOT extends ActivityHandler {
         let currentIntent = '';
         const previousIntent = await this.previousIntent.get(context, {});
         const conversationData = await this.conversationData.get(context, {});
+        let textValue;
 
-        console.log(context.activity.value);
+        if (context.activity.value) {
+            textValue = context.activity.value.msteams.value;
+        } else {
+            textValue = context.activity.text;
+        }
+        console.log(textValue);
 
         if (previousIntent.intentName && conversationData.endDialog === false) {
             currentIntent = previousIntent.intentName;
         } else if (previousIntent.intentName && conversationData.endDialog === true) {
-            currentIntent = context.activity.text;
+            currentIntent = textValue;
         } else {
-            currentIntent = context.activity.text;
-            await this.previousIntent.set(context, { intentName: context.activity.text });
+            currentIntent = textValue;
+            await this.previousIntent.set(context, { intentName: textValue });
         }
         console.log(`intent: ${ currentIntent }`);
         switch (currentIntent) {
