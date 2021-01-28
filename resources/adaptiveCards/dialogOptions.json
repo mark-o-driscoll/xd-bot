@@ -1,0 +1,29 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "TextBlock",
+            "text": "What would you like to do today??",
+            "wrap": true
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.Submit",
+            "title": "Book Interview Slot",
+            "data": "Book Interview Slot"
+        },
+        {
+            "type": "Action.Submit",
+            "title": "Find Office Location",
+            "data": "Find Office Location"
+        },
+        {
+            "type": "Action.Submit",
+            "title": "Contact HR",
+            "data": "Contact HR"
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.2"
+}

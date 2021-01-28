@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-const { ActivityHandler, MessageFactory } = require('botbuilder');
+const { ActivityHandler, MessageFactory, CardFactory } = require('botbuilder');
 
 const { BookInterviewDialog } = require('./componentDialogs/bookInterviewDialog');
 
+const optionsCard = require('./resources/adaptiveCards/dialogOptions');
 class XDBOT extends ActivityHandler {
     constructor(conversationState, userState) {
         super();
@@ -52,14 +53,21 @@ class XDBOT extends ActivityHandler {
     }
 
     async sendSuggestedActions(turnContext) {
-        var reply = MessageFactory.suggestedActions(['Book Interview Slot', 'Contact HR', 'Find Office Location'], 'What would you like to do today?');
-        await turnContext.sendActivity(reply);
+        // const reply = MessageFactory.suggestedActions(['Book Interview Slot', 'Contact HR', 'Find Office Location'], 'What would you like to do today?');
+        // await turnContext.sendActivity(reply);
+        console.log('sendSuggestedActions start');
+        await turnContext.sendActivity({
+            attachments: [CardFactory.adaptiveCard(optionsCard)]
+        });
+        console.log('sendSuggestedActions end');
     }
 
     async dispatchToIntentAsync(context) {
         let currentIntent = '';
         const previousIntent = await this.previousIntent.get(context, {});
         const conversationData = await this.conversationData.get(context, {});
+
+        console.log(context.activity.value);
 
         if (previousIntent.intentName && conversationData.endDialog === false) {
             currentIntent = previousIntent.intentName;
@@ -69,6 +77,7 @@ class XDBOT extends ActivityHandler {
             currentIntent = context.activity.text;
             await this.previousIntent.set(context, { intentName: context.activity.text });
         }
+        console.log(`intent: ${ currentIntent }`);
         switch (currentIntent) {
         case 'Book Interview Slot':
             console.log('Inside Book Interview Slot Case');
@@ -81,7 +90,7 @@ class XDBOT extends ActivityHandler {
                 await this.sendSuggestedActions(context);
             }
             break;
-        case 'Get Office Location':
+        case 'Find Office Location':
             await this.previousIntent.set(context, { intentName: null });
             await context.sendActivity('Our Office is located in Ballincollig, Co. Cork.');
             await this.sendSuggestedActions(context);
