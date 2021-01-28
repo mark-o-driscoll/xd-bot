@@ -100,8 +100,8 @@ class BookInterviewDialog extends ComponentDialog {
     async pickInterviewTime(step) {
         step.values.date = step.result.value;
         console.log(step.result);
-        // These times would be retrieved from the DB
-        const testTimes = ['11:00', '12:15', '13.30', '14.45', '15.30'];
+        // These times would be retrieved from the DB/ anything more than 3 options gives a numbered list.
+        const testTimes = ['11:00', '12:15', '13.30'];
         return await step.prompt(CHOICE_PROMPT, {
             choices: ChoiceFactory.toChoices(testTimes),
             prompt: `On ${ step.values.date } we have the following interview time slots available:`
