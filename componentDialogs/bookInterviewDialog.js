@@ -13,9 +13,9 @@ const DATETIME_PROMPT = 'DATETIME_PROMPT';
 const WATERFALL_DIALOG = 'WATERFALL_DIALOG';
 let endDialog = '';
 
-class MakeReservationDialog extends ComponentDialog {
+class BookInterviewDialog extends ComponentDialog {
     constructor(conservsationState, userState) {
-        super('makeReservationDialog');
+        super('bookInterviewDialog');
 
         this.addDialog(new TextPrompt(TEXT_PROMPT));
         this.addDialog(new TextPrompt(XDCODE_PROMPT, this.xdCodeExistsValidator));
@@ -163,4 +163,4 @@ class MakeReservationDialog extends ComponentDialog {
     }
 }
 
-module.exports.MakeReservationDialog = MakeReservationDialog;
+module.exports.BookInterviewDialog = BookInterviewDialog;

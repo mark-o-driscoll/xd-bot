@@ -10,7 +10,7 @@ const restify = require('restify');
 const { BotFrameworkAdapter, MemoryStorage, ConversationState, UserState } = require('botbuilder');
 
 // This bot's main dialog.
-const { RRBOT } = require('./rrbot');
+const { XDBOT } = require('./xdbot');
 
 // Import required bot configuration.
 const ENV_FILE = path.join(__dirname, '.env');
@@ -60,12 +60,12 @@ const conversationState = new ConversationState(memmoryStorage);
 const userState = new UserState(MemoryStorage);
 
 // Create the main dialog.
-const rrbot = new RRBOT(conversationState, userState);
+const xdbot = new XDBOT(conversationState, userState);
 
 // Listen for incoming requests.
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async (context) => {
         // Route to main dialog.
-        await rrbot.run(context);
+        await xdbot.run(context);
     });
 });

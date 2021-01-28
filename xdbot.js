@@ -3,16 +3,16 @@
 
 const { ActivityHandler, MessageFactory } = require('botbuilder');
 
-const { MakeReservationDialog } = require('./componentDialogs/makeReservationDialog');
+const { BookInterviewDialog } = require('./componentDialogs/bookInterviewDialog');
 
-class RRBOT extends ActivityHandler {
+class XDBOT extends ActivityHandler {
     constructor(conversationState, userState) {
         super();
 
         this.conversationState = conversationState;
         this.userState = userState;
         this.dialogState = conversationState.createProperty('dialogState');
-        this.makeReservationDialog = new MakeReservationDialog(this.conversationState, this.userState);
+        this.bookInterviewDialog = new BookInterviewDialog(this.conversationState, this.userState);
 
         this.previousIntent = this.conversationState.createProperty('previousIntent');
         this.conversationData = this.conversationState.createProperty('conservationData');
@@ -73,8 +73,8 @@ class RRBOT extends ActivityHandler {
         case 'Book Interview Slot':
             console.log('Inside Book Interview Slot Case');
             await this.conversationData.set(context, { endDialog: false });
-            await this.makeReservationDialog.run(context, this.dialogState);
-            conversationData.endDialog = await this.makeReservationDialog.isDialogComplete();
+            await this.bookInterviewDialog.run(context, this.dialogState);
+            conversationData.endDialog = await this.bookInterviewDialog.isDialogComplete();
             if (conversationData.endDialog) {
                 // set previous intent?..
                 await this.sendSuggestedActions(context);
@@ -94,4 +94,4 @@ class RRBOT extends ActivityHandler {
     }
 }
 
-module.exports.RRBOT = RRBOT;
+module.exports.XDBOT = XDBOT;
