@@ -62,6 +62,7 @@ class BookInterviewDialog extends ComponentDialog {
         if (step.result) {
             return await step.prompt(XDCODE_PROMPT, 'Please Enter Your XD activation code');
         } else {
+            await step.context.sendActivity('You have chosen not to book an interview..');
             endDialog = true;
             return await step.endDialog();
         }

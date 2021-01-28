@@ -76,17 +76,23 @@ class XDBOT extends ActivityHandler {
             await this.bookInterviewDialog.run(context, this.dialogState);
             conversationData.endDialog = await this.bookInterviewDialog.isDialogComplete();
             if (conversationData.endDialog) {
-                // set previous intent?..
+                // set intent to null so we reset.
+                await this.previousIntent.set(context, { intentName: null });
                 await this.sendSuggestedActions(context);
             }
             break;
         case 'Get Office Location':
+            await this.previousIntent.set(context, { intentName: null });
             await context.sendActivity('Our Office is located in Ballincollig, Co. Cork.');
+            await this.sendSuggestedActions(context);
             break;
         case 'Contact HR':
+            await this.previousIntent.set(context, { intentName: null });
             await context.sendActivity('You can contact HR here: hr@corehr.com');
+            await this.sendSuggestedActions(context);
             break;
         default:
+            await this.previousIntent.set(context, { intentName: null });
             console.log('Did not match Make Reservation case');
             await this.sendSuggestedActions(context);
             break;
