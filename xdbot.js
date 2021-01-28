@@ -52,7 +52,7 @@ class XDBOT extends ActivityHandler {
     }
 
     async sendSuggestedActions(turnContext) {
-        var reply = MessageFactory.suggestedActions(['Book Interview Slot', 'Contact HR', 'Get Office Location'], 'What would you like to do today?');
+        var reply = MessageFactory.suggestedActions(['Book Interview Slot', 'Contact HR', 'Find Office Location'], 'What would you like to do today?');
         await turnContext.sendActivity(reply);
     }
 
