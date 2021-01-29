@@ -1,0 +1,25 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "TextBlock",
+            "size": "medium",
+            "weight": "bolder",
+            "text": "Core HR Office Location:"
+        },
+        {
+            "type": "Image",
+            "url": "https://media.glassdoor.com/l/38/39/72/0a/corehr-hq.jpg"
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.OpenUrl",
+            "title": "View on Maps",
+            "url": "https://www.google.com/maps/place/CoreHR/@51.883789,-8.5829313,17.87z/data=!4m12!1m6!3m5!1s0x4844920ed25b53a1:0x23919a351d4e773b!2sCoreHR!8m2!3d51.883848!4d-8.582301!3m4!1s0x4844920ed25b53a1:0x23919a351d4e773b!8m2!3d51.883848!4d-8.582301",
+            "style": "positive"
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.2"
+}

@@ -6,6 +6,7 @@ const { ActivityHandler, MessageFactory, CardFactory } = require('botbuilder');
 const { BookInterviewDialog } = require('./componentDialogs/bookInterviewDialog');
 
 const optionsCard = require('./resources/adaptiveCards/dialogOptions');
+const locationCard = require('./resources/adaptiveCards/locationCard');
 class XDBOT extends ActivityHandler {
     constructor(conversationState, userState) {
         super();
@@ -45,7 +46,7 @@ class XDBOT extends ActivityHandler {
         for (const idx in activity.membersAdded) {
             if (activity.membersAdded[idx].id !== activity.recipient.id) {
                 // user = ${ activity.membersAdded[idx].name }
-                const welcomeMessage = 'Welcome to Xd Recruitment Bot!';
+                const welcomeMessage = 'Welcome to the XD Chat Bot!';
                 await turnContext.sendActivity(welcomeMessage);
                 await this.sendSuggestedActions(turnContext);
             }
@@ -68,6 +69,7 @@ class XDBOT extends ActivityHandler {
         const conversationData = await this.conversationData.get(context, {});
         let textValue;
 
+        console.log(context.activity.text);
         if (context.activity.value) {
             textValue = context.activity.value.msteams.value;
         } else {
@@ -98,7 +100,10 @@ class XDBOT extends ActivityHandler {
             break;
         case 'Find Office Location':
             await this.previousIntent.set(context, { intentName: null });
-            await context.sendActivity('Our Office is located in Ballincollig, Co. Cork.');
+            // await context.sendActivity('Our Office is located in Ballincollig, Co. Cork.');
+            await context.sendActivity({
+                attachments: [CardFactory.adaptiveCard(locationCard)]
+            });
             await this.sendSuggestedActions(context);
             break;
         case 'Contact HR':
