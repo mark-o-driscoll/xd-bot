@@ -111,7 +111,7 @@ class BookInterviewDialog extends ComponentDialog {
     async confirmStep(step) {
         step.values.time = step.result.value;
 
-        const msg = `Interview Booking Details. \n\n Name: ${ step.values.xdDetails.name } \n\n XD Code: ${ step.values.xdDetails.xdCode }\n\n Date: ${ step.values.date }\n\n Date: ${ step.values.time }`;
+        const msg = `Interview Booking Details. \n\n Name: ${ step.values.xdDetails.name } \n\n Job Title: ${ step.values.xdDetails.job } \n\n XD Code: ${ step.values.xdDetails.xdCode }\n\n Date: ${ step.values.date }\n\n Time: ${ step.values.time }`;
 
         await step.context.sendActivity(msg);
 
