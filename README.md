@@ -59,3 +59,15 @@ To learn more about deploying a bot to Azure, see [Deploy your bot to Azure](htt
 - [Channels and Bot Connector Service](https://docs.microsoft.com/en-us/azure/bot-service/bot-concepts?view=azure-bot-service-4.0)
 - [Restify](https://www.npmjs.com/package/restify)
 - [dotenv](https://www.npmjs.com/package/dotenv)
+
+## deploy
+az login
+
+az account set --subscription  "<subkey>"
+    
+az ad app create --available-to-other-tenants --display-name "xdwebappbot" --password "<password>"
+
+existing group = "bot-linux"
+
+To deploy run in deployment folder: az deployment group create --resource-group "bot-linux" --template-file "./template-with-preexisting-rg.json" --parameters appId="<appId>" appSecret="<password>" botId="xdchatbot" newWebAppName="xdchatbot" newAppServicePlanName="xdchatbot" appServicePlanLocation="uksouth" --name "xdchatbot"
+    In Azure go to Web App / Deployment/ Create Pipeline with Git Hub
